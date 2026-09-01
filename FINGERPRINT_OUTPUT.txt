@@ -1,0 +1,40 @@
+﻿loading cells...
+  A (404, 28)  B (352, 28) (files w/o burst flags: 213)  C (1863, 28)  D (949, 28)
+  A:121102@AO        windows=1  PC1 share=72.8%
+  B:121102@FAST      windows=1  PC1 share=84.8%
+  C:20201124A@FAST   windows=5  PC1 share=88.7%
+  D:20220912A@FAST   windows=2  PC1 share=99.0%
+
+Per-feature cell means (window sd in the pooled row):
+feature              A           B           C           D   pooled sd
+r1(s1)          0.0053      0.1204      0.4220      0.5607      0.0905
+r2(s1)          0.0369      0.1837      0.4825      0.6157      0.0790
+pers(s1)        0.2507      0.4786      0.7499      0.8433      0.0567
+gain(s1)        0.0124     -0.0085      0.0182      0.0356      0.0445
+wave(s1)        0.3219      0.8582      0.7831      0.6817      0.1300
+r1(s2)          0.0188      0.0128      0.1956      0.3631      0.0131
+r2(s2)          0.0523      0.0619      0.2585      0.4514      0.0190
+pers(s2)        0.2735      0.3761      0.5977      0.7792      0.0536
+wave(s2)        0.5014      0.4100      0.6536      0.6865      0.1056
+
+Distance matrix (median |delta|/sd over 9 features):
+                           A         B         C         D
+A:121102@AO                -      1.27      5.64      7.33
+B:121102@FAST           1.27         -      3.78      5.47
+C:20201124A@FAST        5.64      3.78         -      1.65
+D:20220912A@FAST        7.33      5.47      1.65         -
+
+D_same (A,B) = 1.27   D_diff (B,C) = 3.78   D_diff (B,D) = 5.47
+Frozen criteria: POWER GATE min(D_diff) > 1.0; MATCH if D_same < min(D_diff); INSTRUMENT if D_same > max(D_diff).
+VERDICT: MATCH - fingerprint travels with the SOURCE; instrumental class killed
+
+R1 control: cell B with the burst signal erased (whole-file
+  average; ~ms burst over ~6 s of data leaves the receiver noise
+  floor). The telescope signature should appear here if and only
+  if the primary match is carried by burst content.
+  D_same = 3.44   D_diff(B,C) = 1.45   D_diff(B,D) = 3.01
+
+R2: cell B, uniform power-outlier burst extraction (no metadata)
+  files using single-max-subint fallback: 311/352;  PC1 share=25.5%
+  D_same = 0.70   D_diff(B,C) = 4.94   D_diff(B,D) = 6.63
+  R2 verdict: MATCH

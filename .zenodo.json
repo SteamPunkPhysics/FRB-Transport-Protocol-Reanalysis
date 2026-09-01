@@ -1,0 +1,34 @@
+{
+  "title": "A transport protocol in repeating fast radio bursts, and the language-grade signal inside it — reproducibility package",
+  "description": "Complete reproducibility package for the reanalysis paper: both paper editions (cross-disciplinary and frozen measurement-only), every analysis script with committed deterministic outputs, figure generators, and control corpora. A reproducible reanalysis of 'Evidence for Structured Signal Traffic in Fast Radio Burst Data' (doi:10.5281/zenodo.19443570): standard protocol-reverse-engineering criteria find a transport layer (32-symbol frame, dominant carrier, five multiplexed sub-channels, line code, directed dependency); removing it as a receiver would isolates a stream that passes the standard two-axis statistical language test against matched-pipeline English controls; a cross-telescope fingerprint square (Arecibo vs FAST) shows the payload statistics travel with the source, not the instrument. Data files are not included; the README points to every public archive with DOIs.",
+  "creators": [
+    {
+      "name": "Meucci, Shiva",
+      "affiliation": ""
+    }
+  ],
+  "license": {
+    "id": "MIT"
+  },
+  "upload_type": "software",
+  "access_right": "open",
+  "version": "1.0.0",
+  "keywords": [
+    "fast radio bursts",
+    "SETI",
+    "protocol reverse engineering",
+    "information theory",
+    "Shannon entropy",
+    "linguistic laws",
+    "Zipf's law",
+    "cross-source replication",
+    "reproducible research"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.19443570",
+      "relation": "cites",
+      "scheme": "doi"
+    }
+  ]
+}

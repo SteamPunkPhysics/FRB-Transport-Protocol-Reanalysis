@@ -1,0 +1,10 @@
+# Core analysis (frb_three_part.py, fingerprint_square.py, depth_gain_20240114a.py)
+numpy
+scipy
+pandas
+
+# Only needed by the data builders (build_spectra.py, build_spectra_frb121102_fast.py)
+astropy
+
+# Only needed by the figure generators
+matplotlib

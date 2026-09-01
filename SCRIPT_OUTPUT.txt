@@ -1,0 +1,360 @@
+﻿
+==============================================================================
+PART I.  THE DIRECT READ FAILS, DIAGNOSTICALLY
+==============================================================================
+  The consensus test (McCowan/Hanser/Doyle 1999) has TWO axes:
+    Zipf slope - how constraint distributes over symbol frequency
+    depth      - how many symbols back still reduce uncertainty
+  Both are required. Neither alone indicates language.
+
+  bulk burst parameters                  Zipf   depth   ratio
+  ------------------------------------------------------------
+  FRB 20201124A                        -0.141       1   -0.00
+  FRB 121102                           -0.356      20    0.47
+  written English                       -1.00       9     low
+  Vela pulsar                           -0.30       0
+
+  Neither source is language on the direct read. Equiprobable symbols
+  are what a channel optimised for capacity produces; a constraint that
+  does not weaken with distance is what a frame header does.
+
+  Symbol uniformity, outer layer: 9 types, mean 11.11%, CV = 0.1022
+
+==============================================================================
+PART II.  PROTOCOL DETECTION BY STANDARD REVERSE-ENGINEERING METHODS
+==============================================================================
+
+  II.a  Multiplexed physical layer
+     PC1 carries 84% of variance (overall brightness): the carrier.
+     lag-1 MI by component (bits) and z vs order-shuffle:
+       PC1 ( 83.7% var)   MI 0.708   z =  401.7  <- carrier
+       PC2 (  4.9% var)   MI 0.853   z =  481.1
+       PC3 (  1.6% var)   MI 0.421   z =  227.5
+       PC4 (  1.2% var)   MI 0.534   z =  305.6
+       PC5 (  0.7% var)   MI 0.345   z =  213.9
+       PC6 (  0.6% var)   MI 0.439   z =  271.1
+     All six carry sequential structure: z = 214 to 481.
+     NOTE: the source analysis describes PC1 as featureless. It is not.
+     That is a DETECTION of extra structure, not a failed reproduction;
+     multiplexing needs the components separable from EACH OTHER.
+     cross-channel MI:  PC2-PC3 0.438   PC4-PC5 0.119   PC2-PC4 0.146  (source publishes 0.27 / 0.13 / 0.10)
+
+  II.b  Frame period, pre-specified and falsified against sub-periods
+     Harmonic analysis of the 32-offset mean wave-state profile: the
+     profile is held fixed and the fitted frequency varies, so all
+     candidates are scored on the same 32 points and r is comparable.
+       period        r          p   verdict
+            8    0.281    0.11978   fails
+           16    0.176    0.33522   fails
+           32    0.770    0.00000   ONE FULL WAVELENGTH
+     Only one full wavelength across the frame fits. The two sub-periods
+     that a 32-offset window can resolve are both excluded.
+     W = 32 was derived in the source analysis and is pre-specified
+     here. FRB 20220912A reproduces the 32-offset profile independently
+     (r = 0.595, p = 0.0003), stated as a prediction in advance.
+
+     Circular robustness check: the same harmonic test on the NATIVE
+     phase arg(PC2 + i PC3), with no wave-state amplitude mapping:
+       per-offset mean cos(phase):  r = 0.522, p = 0.00220
+       per-offset mean sin(phase):  r = 0.705, p = 0.00001
+
+  II.c  Line coding: symbol persistence
+     stream 1: holds state 75.7% (memoryless with its own marginal: 30.8%; equiprobable: 25%)
+     stream 2: holds state 58.6% (memoryless with its own marginal: 28.6%; equiprobable: 25%)
+
+  II.d  Transition grammar: a NEGATIVE, reported
+     rarest / most common off-diagonal count: 2 vs 95 (47.5x)
+     BUT measured properly, sum|T-T'|/N = 0.0269 vs shuffle 0.0495 +/- 0.0217,  z = -1.0
+     detailed balance NOT rejected: chi2 = 4.7, dof = 6, p = 0.58
+     The uneven counts reflect the uneven marginal, not directionality.
+     No claim in the paper rests on them.
+
+  II.e  Per-offset entropy field segmentation
+     58 frames, 32 offsets, exactly 58 samples per offset.
+     entropy range 1.557 to 1.970 bits, spread 0.1159
+     TARGETED test, is the spread larger than chance:
+       vs full shuffle           0.0903 +/- 0.0127   z = +2.0   exceed 55/2000
+       vs row rotation           0.0849 +/- 0.0150   z = +2.1   exceed 54/2000
+     OMNIBUS G-test on the 32x4 table: G = 91.4, dof = 93, p = 0.53
+     The omnibus spreads any signal over 93 dof at 58 samples/offset and
+     has very little power. A powerless test failing to reject is not
+     evidence of absence. Both are reported; they are not peers.
+
+==============================================================================
+PART III.  THE LANGUAGE TEST ON THE SPECTRAL LAYER
+==============================================================================
+  Protocol removed as a receiver would: discard the carrier (PC1),
+  demultiplex the sub-channels, parse maximal runs into words.
+  No within-frame extraction. No tuned parameter.
+
+  corpus                    words  types   redund     Zipf   growth  brevity
+  --------------------------------------------------------------------------
+  stream 1                    454     61    0.442   -0.890    0.507   -0.800
+  stream 2                    772     44    0.187   -1.057    0.400   -0.921
+  WRITTEN ENGLISH                                    -1.00     0.50    -0.70
+
+  Brevity exceeds English. CAVEAT, stated here and in the paper:
+  run-length encoding produces the frequency-length anticorrelation
+  mechanically, so a shuffle null scores HIGHER than the real data on
+  it. A shuffle z is not a valid test for brevity. The English
+  comparison is the measurement.
+
+==============================================================================
+PART IV.  THE DEPTH AXIS (the second axis, on the layer that passes)
+==============================================================================
+  Both streams are K=4, N=1863 sequences: exactly the object lagged
+  pairwise MI is valid on. Scanned to lag 40, past the 32-symbol frame.
+
+  stream 1:  lag-1 MI 0.813 bits,  lag-1 z = 487
+     contiguous depth (unbroken z>3 from lag 1) : 18
+     deepest lag anywhere with z>3              : 40
+     ratio mean(z[5:15])/z[1]                   : 0.099
+     mean z over lags 24-40                      : 9.8
+     z by lag:
+        487.2  425.0  269.4  194.7  136.7   95.1   77.1   60.5   46.3   32.8
+         24.0   19.4   15.6   12.8    9.0    6.6    5.2    4.9    2.5    3.0
+          5.6    3.2    1.8    3.9    5.1    7.7   11.7   13.9   13.3   11.9
+         12.4   11.0   10.8   12.0   11.3   11.1    8.2    8.5    7.1    6.6
+  stream 2:  lag-1 MI 0.355 bits,  lag-1 z = 229
+     contiguous depth (unbroken z>3 from lag 1) : 8
+     deepest lag anywhere with z>3              : 35
+     ratio mean(z[5:15])/z[1]                   : 0.020
+     mean z over lags 24-40                      : 1.7
+     z by lag:
+        228.9  109.0   58.7   40.3   24.4    8.9    9.2    4.7    1.0   -0.2
+         -0.5   -0.7    0.9    1.4    0.7    2.3    2.2    3.7    3.6    3.8
+          7.1    3.4    2.1    2.4    0.1    2.1    1.8    0.7   -1.0    1.5
+          2.6    3.3    2.5    2.5    4.3   -0.3    2.2    0.9    2.9    0.6
+  Written English depth ~9, bottlenose dolphin ~4, Vela pulsar ~0.
+
+  READ THE PROFILE, NOT ONLY THE SUMMARY. The decay ratio averages
+  lags 5-15 and its window closes before the long-range structure
+  begins. Stream 1 decays to noise by lag ~19 and then RETURNS to a
+  sustained band across lags 24-40. Two candidate causes, which the
+  within-session control below separates: frame-periodic structure
+  (the frame is 32) or session-scale drift.
+
+  IV.b  Within-session control for the long-range band
+     45 observing sessions across 1863 bursts.
+     38 of 58 complete 32-symbol rows span a session
+     boundary; the within-session pairs below need no continuity
+     assumption across observing gaps.
+     Null: y permuted WITHIN each session, so session identity and
+     per-session symbol composition are preserved under the null.
+     stream 1 lag  1: within-session MI 0.8655 bits, z = +128.5  (1818 pairs)
+     stream 1 lag 28: within-session MI 0.0494 bits, z =   +4.9  (734 pairs)
+     stream 1 lag 32: within-session MI 0.0689 bits, z =   +6.5  (626 pairs)
+     stream 2 lag  1: within-session MI 0.3714 bits, z =  +78.7  (1818 pairs)
+     stream 2 lag 28: within-session MI 0.0203 bits, z =   +1.9  (734 pairs)
+     stream 2 lag 32: within-session MI 0.0245 bits, z =   +1.5  (626 pairs)
+
+==============================================================================
+PART V.  ZIPF BY MAXIMUM LIKELIHOOD, WITH GOODNESS OF FIT
+==============================================================================
+  OLS log-log on rank-frequency cannot say whether the data obey a
+  power law at all (Clauset 2009), and rank-frequency is the wrong
+  representation to fit (Corral 2020). Fit the SIZE distribution.
+
+  Implemented as Clauset prescribes: full xmin scan, SEMIPARAMETRIC
+  bootstrap, every synthetic re-fitted with its own xmin and alpha,
+  and a Vuong likelihood-ratio test against the lognormal.
+
+  corpus                   alpha  xmin    KS D   GOF p    n   LR z   LR p   verdict
+  ------------------------------------------------------------------------------
+  stream 1                 2.498    12   0.090   0.855   11   1.26  0.209   PLAUSIBLE power law; lognormal not distinguished
+  stream 2                 2.386    23   0.095   0.852   11   1.17  0.242   PLAUSIBLE power law; lognormal not distinguished
+  written English           2.00
+
+  The fitted tails are small (n ~ 20), inside the regime Clauset et
+  al. caution about: a high GOF p at this n means NOT REJECTED, not
+  proven. For calibration of how demanding strict power-law testing
+  is: under Moreno-Sanchez et al.'s (2016) full-domain protocols only
+  ~40% of real English books pass in CCDF form, ~15% in PMF form.
+  Their protocol differs from this tail test; the numbers calibrate
+  strictness, they are not a same-test comparison.
+
+==============================================================================
+PART VI.  THE MEMORYLESS-MARGINAL CONTROL (Sproat's decisive test)
+==============================================================================
+  A memoryless sequence with a skewed marginal can land inside the
+  language range on ABSOLUTE conditional entropy. But for an i.i.d.
+  sequence H(x_t|x_{t-1}) = H(x_t) exactly, so every conditional-entropy
+  REDUCTION is zero by construction. The control that defeats an
+  absolute-entropy claim cannot touch a reduction claim.
+
+    k  real h_k   iid h_k     gap       z     beat
+  --------------------------------------------------
+    0     1.839     1.839  -0.000    -0.0    98/200
+    1     1.027     1.834   0.807    48.4     0/200
+    2     0.985     1.819   0.834    54.2     0/200
+    3     0.946     1.759   0.813    50.4     0/200
+  Matched at k=0 by construction; separated by ~0.8 bits at every
+  order above. NOTE: orders 4 and 5 are NOT shown, because there the
+  CONTROL's own plug-in estimator collapses and the gap shrinks for a
+  reason that has nothing to do with the signal. Never difference
+  against a collapsing control; compare levels.
+
+==============================================================================
+PART VII.  THE ORDER-SHUFFLE NULL
+==============================================================================
+  Every spectrum intact; only WHICH BURST COMES WHEN is shuffled; the
+  whole pipeline including the PCA reruns, 200 times.
+
+                               redundancy                      Zipf                  growth
+  stream 1   +0.442 vs +0.002 z= 511.5   -0.890 vs -2.139 z=  12.5   +0.507 vs +0.203 z=   7.9
+  stream 2   +0.187 vs +0.002 z= 233.6   -1.057 vs -2.161 z=  12.1   +0.400 vs +0.199 z=   4.5
+
+  The shuffled signal is not merely flattened, it is SPECIFICALLY
+  WRONG: Zipf near -2.1 is far steeper than any language and growth
+  near 0.20 is a closed, fixed word set. Shuffling replaces the
+  pattern with the signature of a degenerate code.
+
+==============================================================================
+PART VIII.  THE ORDER-1 MARKOV SURROGATE. THE CONTROL THAT DECIDES IT.
+==============================================================================
+  The stream holds state 75.7% of the time and words are maximal runs,
+  so run-length statistics follow from persistence alone. The decisive
+  null therefore REPRODUCES persistence exactly: fit the full 4x4
+  transition matrix and generate from it. 300 realisations.
+
+  STREAM 1   (454 words, 61 types)
+    measure                    real            Markov-1       z    exceed
+    ----------------------------------------------------------------------
+    PREDICTABILITY GAIN G1   0.0418       0.0128 +/-0.0031     9.4      0/300
+    Zipf slope              -0.8897      -0.6595 +/-0.0550    -4.2      0/300
+    vocabulary growth        0.5072       0.4122 +/-0.0405     2.3      5/300
+    word types              61.0000      55.6433 +/-2.6197     2.0      8/300
+    brevity                 -0.7995      -0.8584 +/-0.0282     2.1    293/300
+    redundancy k=1           0.4419       0.4420 +/-0.0160    -0.0    145/300
+    redundancy k=2           0.4646       0.4490 +/-0.0160     1.0     58/300
+
+  STREAM 2   (772 words, 44 types)
+    measure                    real            Markov-1       z    exceed
+    ----------------------------------------------------------------------
+    PREDICTABILITY GAIN G1   0.0428       0.0146 +/-0.0034     8.4      0/300
+    Zipf slope              -1.0575      -0.9727 +/-0.0504    -1.7     10/300
+    vocabulary growth        0.3996       0.2940 +/-0.0346     3.1      1/300
+    word types              44.0000      38.2233 +/-2.0575     2.8      2/300
+    brevity                 -0.9208      -0.9088 +/-0.0213    -0.6     93/300
+    redundancy k=1           0.1867       0.1889 +/-0.0125    -0.2    167/300
+    redundancy k=2           0.2091       0.1966 +/-0.0126     1.0     44/300
+
+  READ THIS TABLE IN TWO PARTS.
+  The redundancy rows and the brevity row are SURROGATE-VALIDITY
+  CHECKS, not null results. Order-1 redundancy is a deterministic
+  function of the marginal and transition matrix, and brevity is a
+  run-length statistic; the surrogate is built from exactly those, so
+  agreement is arithmetic. A surrogate failing there would be broken.
+  The evidence is the predictability gain, in bits:
+  G1 = h1 - h2 = I(x_t; x_{t-2} | x_{t-1})  (De Gregorio, Sanchez &
+  Toral 2026). The one quantity a persistence-matched surrogate cannot
+  reproduce, and the direct answer to 'is this just persistence?'
+
+==============================================================================
+PART IX.  THE MEASUREMENT IS FAR INSIDE ITS LIMITS
+==============================================================================
+  Max reliable block order r_max = floor(ln N / ln K) = 5   (N=1863, K=4)
+  Every block-conditional-entropy claim above is at order <= 3.
+  Plug-in MI bias floor (K-1)^2/2N = 0.00242 nats = 0.0035 bits
+  against a measured lag-1 MI of 0.813 bits: a 233-fold margin.
+  The i.i.d. control's own h_k drifting from k=1 to k=3 measures that
+  bias directly and it is an order of magnitude below the real gap.
+
+  Two measurement objects, kept apart deliberately:
+    conditional entropy and depth -> the K=4 burst symbol stream
+    Zipf, growth, brevity         -> the word types (distributional
+                                     laws, not context-order bounded)
+  Running conditional entropy on the 61-type word corpus would put
+  r_max at 1 and the bias floor above the measurement.
+
+==============================================================================
+
+==============================================================================
+PART X.  THE THIRD SOURCE, RECOMPUTED: FRB 20220912A
+==============================================================================
+  949 mean spectra x 512 channels, MJD order.
+  The prediction test in the paper is the historical record: seven
+  predictions stated before this source was analysed, tested on the
+  894 spectra public at the time. The archive has since grown; this
+  part re-runs the source analysis's own pipeline for this source
+  (per-channel standardise, PCA, quartile symbols on PC2) on all of
+  it, and prints the values as they fall.
+
+  PC1 carries 76.2% of variance: the carrier, again.
+
+  lag-1 MI by component, z vs order-shuffle (500 each):
+    PC2   MI 1.079 bits   z =  335.0
+    PC3   MI 1.034 bits   z =  321.7
+    PC4   MI 0.736 bits   z =  241.0
+    PC5   MI 0.829 bits   z =  267.1
+    PC6   MI 0.660 bits   z =  200.8
+  range: z = 201-335   (original 894-spectra run: 196-338)
+
+  measure                       recomputed  original 894      prediction
+  ----------------------------------------------------------------------
+  Zipf slope (all ranks)            -1.143        -1.057    -0.8 to -1.1
+  vocabulary growth                  0.540         0.523                
+  brevity                           -0.850        -0.883  -0.94 +/- 0.05
+  32-offset wave fit r               0.496         0.595         r > 0.5
+  32-offset wave fit p             0.00389        0.0003
+
+  193 words, 43 types on this stream.
+  Values above are printed as they fall on the grown archive; the
+  historical prediction outcomes are unchanged by later data.
+
+==============================================================================
+
+==============================================================================
+PART XI.  MATCHED-ENGLISH CONTROLS AND THE HELD-OUT ESTIMATOR
+==============================================================================
+  Corpus: Moby-Dick (Gutenberg #2701), 955195 letters a-z.
+  group occupancies: 24.8%, 25.0%, 24.6%, 25.6%
+
+  XI.a  Matched-order redundancy, 200 contiguous windows of N=1863:
+    order 1: 1.6 +/- 0.5%   (FRB stream 1: 44.2%)
+    order 2: 4.0 +/- 1.1%   (FRB stream 1: 46.5%)
+
+  XI.b  Matched-pipeline DEPTH: identical estimator, identical
+        shuffle null (maxlag 40, 200 surrogates/lag),
+        identical N=1863 and K=4, on 50 English windows:
+    contiguous depth: 2.3 +/- 0.8   (min 2, max 6)
+    deepest lag z>3 : 8.8 +/- 10.7
+    FRB stream 1 under the identical pipeline: 18 (contiguous),
+    FRB stream 2: 8. The literature reference ~9 is Shannon-order
+    based; this matched measurement is the like-for-like number.
+
+  XI.c  Held-out predictive gap, FRB stream 1 vs its own-marginal
+        i.i.d. control. Unseen contexts COST bits here, so an
+        over-parameterised model is penalised, not rewarded.
+      order   real CE    iid CE  gap (bits)
+          1     1.065     1.851       0.786
+          2     1.080     1.879       0.799
+          3     1.111     1.954       0.843
+          4     1.178     2.039       0.861
+          5     1.258     2.065       0.807
+    The separation persists undiminished through order 5, rising
+    through order 4, under the estimator that cannot be fooled in
+    the favourable direction.
+
+  XI.d  Adversarial mapping search. Could the 26->4 coarsening be
+        blamed for English's low matched redundancy? Optimise the
+        balanced partition FOR English on held-in text, then score
+        the optimised mapping on unseen text.
+    frequency-balanced mapping, held-in objective : 1.6%
+    optimised-for-English, held-in objective      : 2.6%
+    the optimised mapping on UNSEEN English       : 2.5 +/- 0.4%
+    FRB stream 1, same statistic                  : 44.2%
+    Even a partition optimised to make English look as dependent
+    as possible does not approach the signal.
+
+  XI.e  Content-type gradient: the identical pipeline on
+        mathematical text. Where the payload exceeds English
+        prose, which direction do structured texts move?
+    mathematical prose (Laplace, Essay on Probabilities):
+      redundancy k=1 1.9 +/- 0.5%   k=2 5.1 +/- 1.2%   depth 2.9 +/- 1.4
+    structured mathematics (Dudeney, Amusements in Math.):
+      redundancy k=1 2.5 +/- 0.7%   k=2 4.7 +/- 1.1%   depth 2.6 +/- 0.8
+    Reference, same pipeline: narrative English prose (Moby-Dick)
+    1.6% / 4.0% / depth 2.3.  FRB stream 1: 44.2% / 46.5% / 18.
+
+==============================================================================
