@@ -1,5 +1,5 @@
 {
-  "title": "A transport protocol in repeating fast radio bursts, and the language-grade signal inside it — reproducibility package",
+  "title": "A Transport Protocol in Repeating Fast Radio Bursts, and the Language-Grade Signal Inside It — Reproducibility Package",
   "description": "Complete reproducibility package for the reanalysis paper: both paper editions (cross-disciplinary and frozen measurement-only), every analysis script with committed deterministic outputs, figure generators, and control corpora. A reproducible reanalysis of 'Evidence for Structured Signal Traffic in Fast Radio Burst Data' (doi:10.5281/zenodo.19443570): standard protocol-reverse-engineering criteria find a transport layer (32-symbol frame, dominant carrier, five multiplexed sub-channels, line code, directed dependency); removing it as a receiver would isolates a stream that passes the standard two-axis statistical language test against matched-pipeline English controls; a cross-telescope fingerprint square (Arecibo vs FAST) shows the payload statistics travel with the source, not the instrument. Data files are not included; the README points to every public archive with DOIs.",
   "creators": [
     {

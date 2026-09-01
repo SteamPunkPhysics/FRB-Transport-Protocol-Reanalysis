@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
-title: "A transport protocol in repeating fast radio bursts, and the language-grade signal inside it"
+title: "A Transport Protocol in Repeating Fast Radio Bursts, and the Language-Grade Signal Inside It"
 authors:
   - family-names: Meucci
     given-names: Shiva
@@ -35,5 +35,5 @@ preferred-citation:
   authors:
     - family-names: Meucci
       given-names: Shiva
-  title: "A transport protocol in repeating fast radio bursts, and the language-grade signal inside it"
+  title: "A Transport Protocol in Repeating Fast Radio Bursts, and the Language-Grade Signal Inside It"
   year: 2026

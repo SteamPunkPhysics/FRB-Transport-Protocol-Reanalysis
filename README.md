@@ -1,4 +1,4 @@
-# A transport protocol in repeating fast radio bursts, and the language-grade signal inside it
+# A Transport Protocol in Repeating Fast Radio Bursts, and the Language-Grade Signal Inside It
 
 A reproducible reanalysis of Meucci, *Evidence for Structured Signal
 Traffic in Fast Radio Burst Data* (doi:10.5281/zenodo.19443570).
