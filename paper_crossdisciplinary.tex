@@ -307,7 +307,7 @@ line coding & symbol persistence vs memoryless rate & \cite{proakis2008} \\
 \end{tabular}
 \end{center}
 
-Per-offset entropy read vertically across aligned messages is a standard
+Per-offset Shannon entropy read vertically across aligned messages is a standard
 field-boundary criterion in protocol reverse engineering: Netzob applies it directly
 \cite{bossert2014}, BinaryInferno ships Shannon-entropy boundary detectors
 \cite{chandler2023}, and the
@@ -646,7 +646,12 @@ appearing as you read on, as they do in an open vocabulary. \emph{Brevity} asks
 whether the most-used words are the shortest. And $z$ counts how many standard
 deviations the real measurement sits from the same measurement on shuffled copies of
 the data: $z = 3$ is the conventional detection threshold, and $z = 500$ is not
-subtle.
+subtle. One disambiguation for readers arriving from physics: \emph{entropy}
+throughout this paper is Shannon's information measure, the average number of bits
+needed to specify the next symbol given what is already known. It shares its
+mathematics with thermodynamic entropy but measures uncertainty in a message, not
+disorder in a medium; no thermodynamic quantity or claim appears anywhere in this
+paper.
 
 \begin{figure}[htbp]
 \centering
