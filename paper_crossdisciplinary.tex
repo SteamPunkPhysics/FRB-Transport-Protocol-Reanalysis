@@ -53,7 +53,9 @@ Traffic in Fast Radio Burst Data}, with Cross-Disciplinary Explanations}
 
 \begin{abstract}
 \noindent
-Fast radio bursts are millisecond radio flashes from other galaxies, and a few
+Fast radio bursts are millisecond radio flashes whose sources are placed far
+beyond our galaxy by the alterations their signals accumulate in transit;
+nothing in this paper depends on that placement. A few
 known sources repeat, producing thousands of flashes over months. In the public
 archives of three such repeaters, the bursts, read in order of arrival, carry
 organised sequential structure, and the statistics that describe it follow each
@@ -64,8 +66,7 @@ published, and report what each returns.
 \noindent
 \textbf{1. The protocol.} The toolkit of protocol reverse engineering, the
 discipline that recovers unknown transmission formats from captured traffic,
-finds the working parts of one in the most densely sampled source,
-FRB~20201124A, and finds the same multi-channel structure again at a second
+finds the working parts of one in FRB~20201124A, replicated in a second
 source. Each
 burst contributes one symbol, classified from the shape of its radio spectrum,
 and the symbol sequence shows: a
@@ -76,25 +77,27 @@ run one way in time.
 
 \smallskip
 \noindent
-\textbf{2. The stripping.} Discarding the carrier and
-separating the channels, the operation a receiver performs, isolates the
-stream the transport layer was wrapping.
+\textbf{2. The stripping.} Read whole, machinery and all, the sequence does
+not fit language, and should not: framing and carrier drown whatever they
+deliver. So exactly the machinery of step 1 is stripped away, blindly, nothing
+more: discard the carrier, separate the channels, the operation any receiver
+performs. What remains is whatever the transport layer was carrying, and it
+can be tested on its own.
 
 \smallskip
 \noindent
 \textbf{3. The language test.} The
 statistical language tests of the animal-communication literature, applied to
-that stream, pass on every axis, matching English or exceeding it on each:
-context helps prediction 18 symbols back where English text run through the
-identical pipeline, matched in length and alphabet, manages 2.3 symbols, and
-six multi-burst signal motifs learned from early
-sessions recur, recognisably, in later ones. The structure survives every
-control built to explain it away, including a surrogate built to repeat
-symbols exactly as often, and in runs exactly as long, as the real stream, and
-it follows the source rather than the instrument: the
-same statistical fingerprint tracks FRB~121102 through two different
-telescopes, while different sources through one telescope stay distinct. Every
-prediction testable on a third source, stated in advance, was confirmed.
+what remains, pass on every axis, at or beyond English's own values: context
+helps prediction 18 symbols back where English text run through the identical
+pipeline, matched in length and alphabet, manages 2.3 symbols, and six
+multi-burst motifs learned in early sessions recur in later ones. The
+structure survives every control built to explain it away, including a
+surrogate built to repeat symbols exactly as often, and in runs exactly as
+long, as the real stream. And it follows the source, not the instrument: the
+same fingerprint tracks FRB~121102 through two different telescopes, while
+different sources through one telescope stay distinct. Every prediction
+testable on a third source, stated in advance, was confirmed.
 
 \smallskip
 \noindent
@@ -139,7 +142,13 @@ that emits millisecond radio flashes; FRB~20201124A emitted 1{,}863 of them acro
 observing sessions of one radio telescope, FAST. Each burst arrives with its own
 spectrum, its brightness across 512 radio frequencies. Every analysis below reads the
 bursts in arrival order, one symbol per burst: \textbf{the sequence, not the
-individual flash, is the object.}
+individual flash, is the object.} Distance, by contrast, is an attribution
+rather than a premise: sources are conventionally placed far beyond the galaxy
+through models of the dispersion their signals accumulate, and the foreground
+components of those models are still being revised against in-situ
+measurement. Nothing here rests on the attribution; every statistic below is
+computed from arrival order and relative spectral shape, and is unchanged by
+any rescaling of distance or absolute strength.
 
 The obstacle specific to this signal is that it arrives wrapped. Applied directly to
 burst parameters, the standard two-axis test of Doyle and McCowan
