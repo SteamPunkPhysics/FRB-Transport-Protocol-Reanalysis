@@ -51,97 +51,39 @@ Traffic in Fast Radio Burst Data}, with Cross-Disciplinary Explanations}
 \maketitle
 \thispagestyle{fancy}
 
-% ----------------------------------------------------------------------------
-% ALTERNATE SHORT ABSTRACT (~205 words), drop-in replacement if the venue
-% requires ~200 words (e.g. Entropy). Swap the abstract body for this text.
-%
-%   The burst sequence of FRB 20201124A carries language-like statistical
-%   structure, but only once a transport layer wrapped around it is identified
-%   and removed. (1) Standard protocol reverse-engineering tools, applied
-%   unmodified, find the layer: a pre-specified 32-symbol frame that falsifies
-%   its sub-period alternatives, a dominant carrier multiplexing five
-%   sub-channels, and a line code holding state at two and a half times the
-%   memoryless rate. Removing the carrier and demultiplexing is a receiver operation, not
-%   an interpretation. (2) The standard two-axis language test, applied
-%   unmodified to the primary demultiplexed stream, passes on both axes: Zipf
-%   slope -0.890 (a power-law fit the Clauset goodness-of-fit protocol does
-%   not reject), vocabulary growth 0.507 against English's 0.50, and
-%   sequential-dependency depth 18 against matched-English 2.3 +/- 0.8.
-%   (3) An order-1 Markov surrogate matched on persistence cannot reproduce
-%   the structure: incremental second-order information exceeds it at z = +9.4
-%   (0 of 300). A memoryless control matched on the marginal separates by 0.8
-%   bits at every order. The statistics travel with the source, not the
-%   telescope: in a four-dataset, two-telescope comparison the closest pair
-%   is the one source measured through both telescopes. Every prediction testable
-%   on a third source, stated in advance, was confirmed. Every number is
-%   printed by deterministic scripts. We detected a protocol; we stripped it;
-%   we detected language.
-% ----------------------------------------------------------------------------
-
 \begin{abstract}
 \noindent
-The burst sequence of FRB~20201124A carries \textbf{language-like statistical
-structure}, but only once a transport layer wrapped around it is identified and
-removed.
+Fast radio bursts are millisecond radio flashes from other galaxies, and a few
+known sources repeat, producing thousands of flashes over months. In the public
+archives of three such repeaters, the bursts, read in order of arrival, carry
+organised sequential structure, and the statistics that describe it follow each
+source across different telescopes. We apply two standard toolkits, exactly as
+published, and report what each returns.
 
 \smallskip
 \noindent
-\textbf{1. The protocol.} The stream is organised into repeating frames of 32 symbols,
-each one complete wavelength of a standing wave ($r = 0.770$, $p < 10^{-5}$; periods 8
-and 16 fail). A dominant carrier holding 84\% of the variance wraps five further
-spectral components; all six carry sequential structure at $z = 214$--$481$. The stream
-holds its state 75.7\% of the time against the 30.8\% its own symbol frequencies
-would sustain without memory. Channel structure is
-confirmed \emph{without} PCA, in raw frequency bands: coincident cross-band transitions
-occur at 0.76--0.84$\times$ the expected rate with within-band sequential information at
-$z = 313$--$546$. Cross-burst dependencies are directed: burst morphology predicts the
-next burst's centre frequency while the reverse fails ($p = 0.033$ against $p = 0.61$).
-\textbf{Frame, carrier, channels, line code and directed dependency constitute a
-transport layer. Removing it is a receiver operation, not an interpretation, and it is
-what makes the contents measurable.}
-
-\smallskip
-\noindent
-\textbf{2. The contents.} Applied directly to burst parameters the standard two-axis
-language test fails, and fails differently on each source: FRB~20201124A gives a flat
-Zipf slope of $-0.141$ with constraint that vanishes by the second symbol, FRB~121102 a
-slope of $-0.356$ with constraint that does \emph{not} weaken with distance. Applied to
-the primary demultiplexed stream of the same bursts it passes, on \textbf{both} axes:
-Zipf slope $-0.890$, with a maximum-likelihood power-law fit the Clauset
-goodness-of-fit protocol does not reject; vocabulary growth $\mathbf{0.507}$ against
-English's $0.50$; and a
-sequential-dependency depth of \textbf{18}, against $\mathbf{2.3 \pm 0.8}$ for English
-measured under the identical pipeline. A second, partially independent stream
-converges: Zipf slope $\mathbf{-1.057}$ against English's $-1.00$, and brevity
-$\mathbf{-0.921}$ against English's $-0.70$, \textbf{exceeding English on that law}.
-Beyond these corpus-level laws, six continuous forms defined from early observing
-sessions classify \textbf{21 of 30} later known-boundary events (70.0\%), against a 26.7\%
-width-matched label-permutation median (exceedance rate $0.00005$). The delivered stream therefore
-contains both long-range organization and a recurrent internal vocabulary.
-The outer and inner layers of one signal sit on opposite sides of the language value:
-the division of labour radio engineering expects, \textbf{power on the carrier,
-information in the modulation}.
-
-\smallskip
-\noindent
-\textbf{3. Controls, in increasing severity.} Shuffling burst order while keeping every
-spectrum intact drives the Zipf slope to $-2.14$, far outside the range reported for
-human language ($z = 12.5$), and drives order-1 redundancy from 0.442 to 0.002
-($z = \mathbf{512}$). A memoryless control matched on absolute entropy by construction
-separates by 0.8 bits at every conditional order from the first on, $z = 48$--$54$,
-0 of 200 exceedances. The decisive test is an order-1 Markov surrogate reproducing the
-observed 75.7\% persistence and its implied run-length statistics by construction. It
-fixes the redundancy \emph{levels} by construction, as it must, but cannot reproduce the
-higher-order information: the incremental contribution of second-order context,
-$I(x_t; x_{t-2} \mid x_{t-1})$, exceeds it at $\mathbf{z = +9.4}$ and $\mathbf{+8.4}$ on
-the two streams, roughly three times the surrogate's value, in \textbf{0 of 300}
-realisations. Stream 1's Zipf slope is likewise reached in \textbf{0 of 300} attempts. \textbf{The structure is not first-order persistence, and it is not
-close.} \textbf{The statistics travel with the source, not the telescope}: in a
-four-dataset comparison spanning two telescopes, every pair of different sources
-separates by 1.7 to 7.3 times the window scatter, while the closest pair in the whole
-matrix is the one source measured through both telescopes, FRB~121102 through Arecibo
-and through FAST. Every prediction that was testable on a
-third source, stated before that source was analysed, was confirmed on it.
+\textbf{1. The protocol.} The toolkit of protocol reverse engineering, the
+discipline that recovers unknown transmission formats from captured traffic,
+finds the working parts of one in the most densely sampled source,
+FRB~20201124A, and finds the same channel architecture again at a second. Each
+burst contributes one symbol, classified from the shape of its radio spectrum,
+and the symbol sequence shows: a
+repeating 32-symbol frame, a dominant carrier wrapping five sub-channels, a
+line code that holds each symbol until new data arrives, and dependencies that
+run one way in time. \textbf{2. The stripping.} Discarding the carrier and
+separating the channels, the operation a receiver performs, isolates the
+stream the transport layer was wrapping. \textbf{3. The language test.} The
+statistical language tests of the animal-communication literature, applied to
+that stream, pass on every axis, matching English or exceeding it on each:
+context helps prediction 18 symbols back where English text run through the
+identical pipeline manages 2.3, and six signal shapes learned from early
+sessions recur, recognisably, in later ones. The structure survives every
+control built to explain it away, including a surrogate built to repeat
+symbols exactly as often, and in runs exactly as long, as the real stream, and
+it follows the source rather than the instrument: the
+same statistical fingerprint tracks FRB~121102 through two different
+telescopes, while different sources through one telescope stay distinct. Every
+prediction testable on a third source, stated in advance, was confirmed.
 
 \smallskip
 \noindent
@@ -238,6 +180,71 @@ single deterministic script over seven public data files, and every number from 
 two companion experiments by their own deterministic scripts with committed outputs;
 the handful of results quoted from
 the source analysis rather than recomputed are cited as such where they appear.
+
+\subsection{The results in brief}
+\label{sec:brief}
+
+For readers who want the numbers before the narrative: the three parts of
+the argument with their headline measurements. Every value below is derived,
+controlled and cross-checked in the sections that follow, and printed by the
+deterministic scripts of the availability section.
+
+The burst sequence of FRB~20201124A carries \textbf{language-like statistical
+structure}, but only once a transport layer wrapped around it is identified and
+removed.
+
+\paragraph{The protocol.} The stream is organised into repeating frames of 32 symbols,
+each one complete wavelength of a standing wave ($r = 0.770$, $p < 10^{-5}$; periods 8
+and 16 fail). A dominant carrier holding 84\% of the variance wraps five further
+spectral components; all six carry sequential structure at $z = 214$--$481$. The stream
+holds its state 75.7\% of the time against the 30.8\% its own symbol frequencies
+would sustain without memory. Channel structure is
+confirmed \emph{without} PCA, in raw frequency bands: coincident cross-band transitions
+occur at 0.76--0.84$\times$ the expected rate with within-band sequential information at
+$z = 313$--$546$. Cross-burst dependencies are directed: burst morphology predicts the
+next burst's centre frequency while the reverse fails ($p = 0.033$ against $p = 0.61$).
+\textbf{Frame, carrier, channels, line code and directed dependency constitute a
+transport layer. Removing it is a receiver operation, not an interpretation, and it is
+what makes the contents measurable.}
+
+\paragraph{The contents.} Applied directly to burst parameters the standard two-axis
+language test fails, and fails differently on each source: FRB~20201124A gives a flat
+Zipf slope of $-0.141$ with constraint that vanishes by the second symbol, FRB~121102 a
+slope of $-0.356$ with constraint that does \emph{not} weaken with distance. Applied to
+the primary demultiplexed stream of the same bursts it passes, on \textbf{both} axes:
+Zipf slope $-0.890$, with a maximum-likelihood power-law fit the Clauset
+goodness-of-fit protocol does not reject; vocabulary growth $\mathbf{0.507}$ against
+English's $0.50$; and a
+sequential-dependency depth of \textbf{18}, against $\mathbf{2.3 \pm 0.8}$ for English
+measured under the identical pipeline. A second, partially independent stream
+converges: Zipf slope $\mathbf{-1.057}$ against English's $-1.00$, and brevity
+$\mathbf{-0.921}$ against English's $-0.70$, \textbf{exceeding English on that law}.
+Beyond these corpus-level laws, six continuous forms defined from early observing
+sessions classify \textbf{21 of 30} later known-boundary events (70.0\%), against a 26.7\%
+width-matched label-permutation median (exceedance rate $0.00005$). The delivered stream therefore
+contains both long-range organization and a recurrent internal vocabulary.
+The outer and inner layers of one signal sit on opposite sides of the language value:
+the division of labour radio engineering expects, \textbf{power on the carrier,
+information in the modulation}.
+
+\paragraph{The controls, in increasing severity.} Shuffling burst order while keeping every
+spectrum intact drives the Zipf slope to $-2.14$, far outside the range reported for
+human language ($z = 12.5$), and drives order-1 redundancy from 0.442 to 0.002
+($z = \mathbf{512}$). A memoryless control matched on absolute entropy by construction
+separates by 0.8 bits at every conditional order from the first on, $z = 48$--$54$,
+0 of 200 exceedances. The decisive test is an order-1 Markov surrogate reproducing the
+observed 75.7\% persistence and its implied run-length statistics by construction. It
+fixes the redundancy \emph{levels} by construction, as it must, but cannot reproduce the
+higher-order information: the incremental contribution of second-order context,
+$I(x_t; x_{t-2} \mid x_{t-1})$, exceeds it at $\mathbf{z = +9.4}$ and $\mathbf{+8.4}$ on
+the two streams, roughly three times the surrogate's value, in \textbf{0 of 300}
+realisations. Stream 1's Zipf slope is likewise reached in \textbf{0 of 300} attempts. \textbf{The structure is not first-order persistence, and it is not
+close.} \textbf{The statistics travel with the source, not the telescope}: in a
+four-dataset comparison spanning two telescopes, every pair of different sources
+separates by 1.7 to 7.3 times the window scatter, while the closest pair in the whole
+matrix is the one source measured through both telescopes, FRB~121102 through Arecibo
+and through FAST. Every prediction that was testable on a
+third source, stated before that source was analysed, was confirmed on it.
 
 % ============================================================================
 \section{The protocol}
