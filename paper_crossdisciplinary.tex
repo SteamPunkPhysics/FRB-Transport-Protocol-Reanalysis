@@ -65,10 +65,12 @@ published, and report what each returns.
 \textbf{1. The protocol.} The toolkit of protocol reverse engineering, the
 discipline that recovers unknown transmission formats from captured traffic,
 finds the working parts of one in the most densely sampled source,
-FRB~20201124A, and finds the same channel architecture again at a second. Each
+FRB~20201124A, and finds the same multi-channel structure again at a second
+source. Each
 burst contributes one symbol, classified from the shape of its radio spectrum,
 and the symbol sequence shows: a
-repeating 32-symbol frame, a dominant carrier wrapping five sub-channels, a
+repeating 32-symbol frame, a dominant carrier component with five weaker
+sub-channels multiplexed beneath it, a
 line code that holds each symbol until new data arrives, and dependencies that
 run one way in time. \textbf{2. The stripping.} Discarding the carrier and
 separating the channels, the operation a receiver performs, isolates the
@@ -76,7 +78,8 @@ stream the transport layer was wrapping. \textbf{3. The language test.} The
 statistical language tests of the animal-communication literature, applied to
 that stream, pass on every axis, matching English or exceeding it on each:
 context helps prediction 18 symbols back where English text run through the
-identical pipeline manages 2.3, and six signal shapes learned from early
+identical pipeline, matched in length and alphabet, manages 2.3 symbols, and
+six multi-burst signal motifs learned from early
 sessions recur, recognisably, in later ones. The structure survives every
 control built to explain it away, including a surrogate built to repeat
 symbols exactly as often, and in runs exactly as long, as the real stream, and
